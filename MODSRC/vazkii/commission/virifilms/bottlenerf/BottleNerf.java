@@ -19,7 +19,7 @@ public class BottleNerf {
 	public void onPreInit(FMLPreInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
-	
+
 	@SubscribeEvent
 	public void onInteract(PlayerInteractEvent event) {
 		ItemStack stack = event.entityPlayer.getCurrentEquippedItem();
@@ -30,20 +30,20 @@ public class BottleNerf {
 			int z = event.z;
 			if(event.world.getBlock(x, y, z) == Blocks.cauldron && event.world.getBlockMetadata(x, y, z) > 1)
 				event.world.setBlockMetadataWithNotify(x, y, z, 1, 1 | 2);
-		
+
 			x = event.x + dir.offsetX;
 			y = event.y + dir.offsetY;
 			z = event.z + dir.offsetZ;
 			if(event.world.getBlock(x, y, z) == Blocks.water) {
 				event.world.setBlockToAir(x, y, z);
-                --stack.stackSize;
-                if(stack.stackSize == 0)
-                	event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, new ItemStack(Items.potionitem));
-                else if(!event.entityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.potionitem)))
-                	event.entityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.potionitem), false);
-                
+				--stack.stackSize;
+				if(stack.stackSize == 0)
+					event.entityPlayer.inventory.setInventorySlotContents(event.entityPlayer.inventory.currentItem, new ItemStack(Items.potionitem));
+				else if(!event.entityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.potionitem)))
+					event.entityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.potionitem), false);
+
 			}
 		}
 	}
-	
+
 }

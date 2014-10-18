@@ -17,7 +17,7 @@ public class HPCheck {
 	public void onPreInit(FMLPreInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
-	
+
 	@SubscribeEvent
 	public void onDamageTaken(LivingHurtEvent event) {
 		if(event.entity instanceof EntityPlayer && ((EntityPlayer) event.entity).getCommandSenderName().equals((Minecraft.getMinecraft().thePlayer.getCommandSenderName()))) {
@@ -25,5 +25,5 @@ public class HPCheck {
 			event.setCanceled(true);
 		}
 	}
-	
+
 }
